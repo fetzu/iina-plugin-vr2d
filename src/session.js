@@ -421,16 +421,17 @@ function flush() {
   // Each of these rebuilds the remap table in full, so a change too small to
   // see is not worth sending. A mostly-horizontal drag still jitters pitch by a
   // fraction of a degree every frame; ignoring that roughly halves the work.
+  // Target v360 directly because the crop filter cannot handle these commands.
   if (moved(v.yaw, pushed.yaw)) {
-    mpv.command("vf-command", [LABEL, "yaw", String(round2(v.yaw))]);
+    mpv.command("vf-command", [LABEL, "yaw", String(round2(v.yaw)), "v360"]);
     pushed.yaw = v.yaw;
   }
   if (moved(v.pitch, pushed.pitch)) {
-    mpv.command("vf-command", [LABEL, "pitch", String(round2(v.pitch))]);
+    mpv.command("vf-command", [LABEL, "pitch", String(round2(v.pitch)), "v360"]);
     pushed.pitch = v.pitch;
   }
   if (moved(v.fov, pushed.fov)) {
-    mpv.command("vf-command", [LABEL, "d_fov", String(round2(v.fov))]);
+    mpv.command("vf-command", [LABEL, "d_fov", String(round2(v.fov)), "v360"]);
     pushed.fov = v.fov;
   }
 

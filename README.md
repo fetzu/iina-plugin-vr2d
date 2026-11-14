@@ -62,6 +62,9 @@ To package it for distribution instead:
 
 Requires IINA 1.4.0 or newer.
 
+IINA 1.5 and later require the **File System** permission for the mpv commands VR2D uses
+to apply the reprojection filter and change the view while the video plays.
+
 ## Using it
 
 Open a VR video. If the name or the container says what it is, VR2D turns on by itself and tells

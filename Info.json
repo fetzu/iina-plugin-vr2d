@@ -12,7 +12,8 @@
   "entry": "src/index.js",
   "permissions": [
     "show-osd",
-    "video-overlay"
+    "video-overlay",
+    "file-system"
   ],
   "preferencesPage": "ui/preferences.html",
   "preferenceDefaults": {
