@@ -10,6 +10,7 @@
 
 var detect = require("./detect.js");
 var diag = require("./diag.js");
+var exporter = require("./export.js");
 var geometry = require("./geometry.js");
 var presets = require("./presets.js");
 var session = require("./session.js");
@@ -430,6 +431,20 @@ function toggleVR2D() {
   else enableVR2D(true);
 }
 
+function exportFlattenedVideo() {
+  if (!session.state.enabled || !session.state.attached) return;
+
+  try {
+    var job = exporter.snapshot(
+      mpv.getString("path"), mpv.getNative("track-list") || [], session.source(), session.state
+    );
+    job.duration = mpv.getNumber("duration");
+    iina.global.postMessage("vr2d:export", job);
+  } catch (error) {
+    osd("VR2D: " + error.message);
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Overlay (heads-up display and drag surface)
 // ---------------------------------------------------------------------------
@@ -720,6 +735,9 @@ function buildMenu() {
       keyOption(KEYS.reset)
     )
   );
+  viewMenu.addSubMenuItem(menu.separator());
+  menuRefs.exportVideo = menu.item("Export Flattened Video…", exportFlattenedVideo);
+  viewMenu.addSubMenuItem(menuRefs.exportVideo);
   menu.addItem(viewMenu);
 
   updateMenu();
@@ -738,6 +756,7 @@ function chooseOverride(key, id, list) {
 function updateMenu() {
   var detected = session.state.detected;
   var hasVideo = !!detected;
+  menuRefs.exportVideo.enabled = session.state.enabled && session.state.attached;
 
   if (menuRefs.toggle) {
     menuRefs.toggle.selected = session.state.enabled;

@@ -115,11 +115,26 @@ so VR2D spends those five carefully:
   Projection          ▸   Try the Next One ⌥P, then Auto + 8 presets
   Stereo Layout       ▸   Try the Next One ⌥L, then Auto + 5 layouts
   Eye                 ▸   Swap ⌥E, Left, Right
-  Look Around         ▸   pan, zoom, recentre
+  Look Around         ▸   pan, zoom, recentre, export
 ```
 
 The `Auto` entries name what detection guessed, so you can always see what VR2D thinks it is
 looking at.
+
+### Export a flattened video
+
+With VR2D active on a local video, choose **Plugin → Look Around → Export Flattened Video…**.
+Leave the path field blank and click **OK** to save as `<source name>_flattened.mp4` in the
+source folder. To save elsewhere, enter a new full MP4 path. Install FFmpeg with
+Homebrew or MacPorts before using this command.
+
+The export progress window stays open when you close the video. Keep IINA open until
+the export completes.
+
+The export renders the entire video from the viewpoint you had when you chose the command.
+It uses the current projection, stereo layout, eye, zoom, output size, interpolation and
+selected audio track from the source file. The MP4 contains H.264 video and AAC audio.
+Subtitles and the VR2D overlay are omitted.
 
 ### View limits
 
