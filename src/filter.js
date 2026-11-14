@@ -59,6 +59,9 @@ function buildV360(source, view, out) {
     "interp=" + (out.interp || "line"),
     "w=" + out.width,
     "h=" + out.height,
+    // session.flush sends absolute angles. FFmpeg otherwise accumulates each
+    // runtime rotation, causing over-rotation and a jump when we rebuild.
+    "reset_rot=1",
   ];
 
   // Equirectangular and cubemap inputs already default to the full sphere;

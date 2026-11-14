@@ -312,7 +312,7 @@ var out = { width: 1920, height: 1080, interp: "line" };
 check(
   "180 sbs graph",
   filter.buildGraph(source180, { yaw: 10, pitch: -5, fov: 90 }, out, "left"),
-  "crop=iw/2:ih:0:0,v360=input=he:output=flat:interp=line:w=1920:h=1080:" +
+  "crop=iw/2:ih:0:0,v360=input=he:output=flat:interp=line:w=1920:h=1080:reset_rot=1:" +
     "ih_fov=180:iv_fov=180:d_fov=90:yaw=10:pitch=-5:roll=0"
 );
 
@@ -327,7 +327,7 @@ var source360 = { layout: "mono", swapEyes: false, projection: "e", inHFov: 360,
 check(
   "360 mono graph omits input fov",
   filter.buildGraph(source360, { yaw: 0, pitch: 0, fov: 90 }, out, "left"),
-  "v360=input=e:output=flat:interp=line:w=1920:h=1080:d_fov=90:yaw=0:pitch=0:roll=0"
+  "v360=input=e:output=flat:interp=line:w=1920:h=1080:reset_rot=1:d_fov=90:yaw=0:pitch=0:roll=0"
 );
 
 var sourceFish = { layout: "sbs", swapEyes: false, projection: "fisheye", inHFov: 200, inVFov: 200 };

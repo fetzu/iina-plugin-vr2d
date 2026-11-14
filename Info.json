@@ -10,9 +10,11 @@
   "ghRepo": "fetzu/iina-plugin-vr2d",
   "ghVersion": 1,
   "entry": "src/index.js",
+  "globalEntry": "src/export-controller.js",
   "permissions": [
     "show-osd",
-    "video-overlay"
+    "video-overlay",
+    "file-system"
   ],
   "preferencesPage": "ui/preferences.html",
   "preferenceDefaults": {
